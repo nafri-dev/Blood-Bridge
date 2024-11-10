@@ -24,19 +24,22 @@ function Dashboard({ onLogout }) {
   const [activeTab, setActiveTab] = useState('overview');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
+  const baseURL = 'http://localhost:5000/api';
+ 
 
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
+   
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
       if (!token) {
         throw new Error('No token found');
       }
-      const response = await axios.get('http://localhost:5000/api/dashboard', {
+      const response = await axios.get(`${baseURL}/dashboard`, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -68,7 +71,7 @@ function Dashboard({ onLogout }) {
       if (!token) {
         throw new Error('No token found');
       }
-      await axios.put(`http://localhost:5000/api/requests/${requestId}`, 
+      await axios.put(`${baseURL}/requests/${requestId}`, 
         { status: newStatus },
         { 
           headers: { 
@@ -96,7 +99,7 @@ function Dashboard({ onLogout }) {
       if (!token) {
         throw new Error('No token found');
       }
-      const response = await axios.put(`http://localhost:5000/api/donors/${donorId}/donate`, 
+      const response = await axios.put(`${baseURL}/donors/${donorId}/donate`, 
         {},
         { 
           headers: { 
@@ -123,7 +126,7 @@ function Dashboard({ onLogout }) {
       if (!token) {
         throw new Error('No token found');
       }
-      const response = await axios.put(`http://localhost:5000/api/donors/${donorId}/activate`, 
+      const response = await axios.put(`${baseURL}/donors/${donorId}/activate`, 
         {},
         { 
           headers: { 
@@ -185,7 +188,7 @@ function Dashboard({ onLogout }) {
     { name: 'O-', value: data.donors.filter(d => d.bloodType === 'O-').length },
   ];
 
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D', '#A4DE6C', '#D0ED57'];
+  const COLORS = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF6384', '#C9CBCF'];
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -294,8 +297,8 @@ function Dashboard({ onLogout }) {
                           data={requestStatusData}
                           cx="50%"
                           cy="50%"
-                          labelLine={false}
-                          outerRadius="80%"
+                          
+                          outerRadius="90%"
                           fill="#8884d8"
                           dataKey="value"
                           label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
