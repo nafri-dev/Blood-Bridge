@@ -18,7 +18,9 @@ function RequestForm() {
     additionalInfo: '',
     consent: false
   });
+  const baseURL = 'http://localhost:5000/api';
   const [message, setMessage] = useState('');
+
 
   const handleChange = (e) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
@@ -29,7 +31,7 @@ function RequestForm() {
     e.preventDefault();
     setMessage('Submitting...');
     try {
-      const response = await axios.post('http://localhost:5000/api/requests', formData);
+      const response = await axios.post(`${baseURL}/requests`, formData);
       console.log('Response:', response.data);
       setMessage(response.data.message);
       setFormData({

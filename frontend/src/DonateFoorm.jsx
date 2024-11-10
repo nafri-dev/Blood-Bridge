@@ -18,6 +18,7 @@ function DonateForm() {
     recentIllness: '',
     consent: false
   });
+  const baseURL = 'http://localhost:5000/api';
   const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
@@ -29,7 +30,7 @@ function DonateForm() {
     e.preventDefault();
     setMessage('Submitting...');
     try {
-      const response = await axios.post('http://localhost:5000/api/donors', formData);
+      const response = await axios.post(`${baseURL}/donors`, formData);
       console.log('Response:', response.data);
       setMessage(response.data.message);
       setFormData({
