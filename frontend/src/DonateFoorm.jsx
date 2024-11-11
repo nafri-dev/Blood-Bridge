@@ -18,7 +18,7 @@ function DonateForm() {
     recentIllness: '',
     consent: false
   });
-  const baseURL = 'http://localhost:5000/api';
+  const baseURL = 'http://localhost:5000';
   const [message, setMessage] = useState('');
 
   const handleChange = (e) => {

@@ -16,7 +16,7 @@ export default function BloodDonationSpinner() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center  xl:mr-28 w-80 h-80 hidden xl:block">
+    <div className="flex items-center justify-center  xl:mr-28 w-80 h-80  xl:block">
       <div className="relative w-full h-full">
         {/* Static Blood Drop Icon */}
         <div className="absolute inset-0 flex items-center justify-center">

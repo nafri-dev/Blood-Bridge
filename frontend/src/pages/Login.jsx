@@ -9,12 +9,12 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const baseURL = 'http://localhost:5000/api';
+  const baseURL = 'http://localhost:5000';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${baseURL}/login`, { username, password });
+      const response = await axios.post(`${baseURL}/api/login`, { username, password });
       localStorage.setItem('token', response.data.token);
       onLogin();
       navigate('/dashboard');

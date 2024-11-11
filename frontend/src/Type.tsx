@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Droplet, Heart, Users, AlertCircle, Check } from 'lucide-react'
 
-const bloodTypes = ['O-', 'O+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+']
+const bloodTypes = ['O-', 'O+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+'] as const
+type BloodType = typeof bloodTypes[number]
 
-const bloodCompatibility = {
+const bloodCompatibility: { [K in BloodType]: BloodType[] } = {
   'O-': ['O-', 'O+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+'],
   'O+': ['O+', 'A+', 'B+', 'AB+'],
   'A-': ['A-', 'A+', 'AB-', 'AB+'],
@@ -15,13 +16,13 @@ const bloodCompatibility = {
 }
 
 export default function BloodTypeCompatibilityPage() {
-  const [selectedType, setSelectedType] = useState<string | null>(null)
+  const [selectedType, setSelectedType] = useState<BloodType | null>(null)
 
-  const handleBloodTypeClick = (type: string) => {
+  const handleBloodTypeClick = (type: BloodType) => {
     setSelectedType(type === selectedType ? null : type)
   }
 
-  const getButtonColor = (type: string) => {
+  const getButtonColor = (type: BloodType) => {
     switch (type[0]) {
       case 'A': return 'text-red-600'
       case 'B': return 'text-blue-600'
@@ -31,7 +32,7 @@ export default function BloodTypeCompatibilityPage() {
   }
 
   return (
-    <div className="min-h-44 bg-gradient-to-br from-red-900 to-red-600 mt-10 xl:mt-24 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-52 bg-red-600 mt-10 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl xl:text-6xl font-extrabold text-center text-white mb-6">
           Blood Type Compatibility Explorer
@@ -40,10 +41,10 @@ export default function BloodTypeCompatibilityPage() {
           Understanding blood type compatibility is crucial for safe transfusions and medical procedures. Explore how different blood types interact and learn about universal donors and recipients.
         </p>
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 ">
-          <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg ">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6 ml-14">Select a Blood Type</h2>
-            <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 mb-8 ml-4 md:ml-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">Select a Blood Type</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
               {bloodTypes.map((type) => (
                 <button
                   key={type}
@@ -59,11 +60,11 @@ export default function BloodTypeCompatibilityPage() {
               ))}
             </div>
             {selectedType && (
-              <div className="mt-8 p-6 bg-red-50 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold text-gray-700 mb-4 ml-10">
-                  Compatibile with {selectedType}:
+              <div className="mt-8 p-6 bg-gray-50 rounded-lg shadow-md">
+                <h3 className="text-xl font-semibold text-gray-700 mb-4">
+                  Compatibility with {selectedType}:
                 </h3>
-                <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 ml-0 md:ml-6">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                   {bloodTypes.map((type) => (
                     <div
                       key={type}

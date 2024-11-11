@@ -24,7 +24,7 @@ function Dashboard({ onLogout }) {
   const [activeTab, setActiveTab] = useState('overview');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
-  const baseURL = 'http://localhost:5000/api';
+  const baseURL = 'http://localhost:5000';
  
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function Dashboard({ onLogout }) {
       if (!token) {
         throw new Error('No token found');
       }
-      const response = await axios.get(`${baseURL}/dashboard`, {
+      const response = await axios.get(`${baseURL}/api/dashboard`, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -99,7 +99,7 @@ function Dashboard({ onLogout }) {
       if (!token) {
         throw new Error('No token found');
       }
-      const response = await axios.put(`${baseURL}/donors/${donorId}/donate`, 
+      const response = await axios.put(`${baseURL}/api/donors/${donorId}/donate`, 
         {},
         { 
           headers: { 
@@ -126,7 +126,7 @@ function Dashboard({ onLogout }) {
       if (!token) {
         throw new Error('No token found');
       }
-      const response = await axios.put(`${baseURL}/donors/${donorId}/activate`, 
+      const response = await axios.put(`${baseURL}/api/donors/${donorId}/activate`, 
         {},
         { 
           headers: { 

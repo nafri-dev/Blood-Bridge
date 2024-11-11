@@ -18,7 +18,7 @@ function RequestForm() {
     additionalInfo: '',
     consent: false
   });
-  const baseURL = 'http://localhost:5000/api';
+  const baseURL = 'http://localhost:5000';
   const [message, setMessage] = useState('');
 
 
@@ -31,7 +31,7 @@ function RequestForm() {
     e.preventDefault();
     setMessage('Submitting...');
     try {
-      const response = await axios.post(`${baseURL}/requests`, formData);
+      const response = await axios.post(`${baseURL}/api/requests`, formData);
       console.log('Response:', response.data);
       setMessage(response.data.message);
       setFormData({
