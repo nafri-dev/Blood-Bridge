@@ -7,7 +7,7 @@ import Emergencyheading from "./head";
 import Home1 from "./Home";
 import BloodTypeCompatibilityPage from "./Type";
 import { HeroVideoDialogDemoTopInBottomOut } from "./video";
-import Donate from "./Donate";
+import Donate from "./Donate"
 import Request from "./Request";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard"

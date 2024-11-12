@@ -50,7 +50,7 @@ export default function BloodDonationPage() {
     <div className="min-h-full bg-white p-6 py-10 xl:py-48">
       <div className="max-w-8xl  xl:ml-28 mx-auto flex flex-col sm:flex-row"> {/* Adjusted for responsive layout */}
         <div className="flex-1 mb-8 sm:mb-0">
-          <h1 className="text-3xl font-extrabold xl:text-3xl text-red-800 mb-8 text-center mb-10">
+          <h1 className="text-3xl font-extrabold xl:text-3xl text-red-800  text-center mb-10">
             Blood Banks , Labs in Kanyakumari district
           </h1>
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -103,7 +103,7 @@ export default function BloodDonationPage() {
           
         </div>
         <div className="ml-8 flex items-center justify-center"> {/* Center the spinner */}
-          <BloodDonationSpinner size={120} /> {/* Set the desired size */}
+          <BloodDonationSpinner  /> {/* Set the desired size */}
         </div>
       </div>
     </div>

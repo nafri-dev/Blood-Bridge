@@ -30,7 +30,7 @@ function DonateForm() {
     e.preventDefault();
     setMessage('Submitting...');
     try {
-      const response = await axios.post(`${baseURL}/donors`, formData);
+      const response = await axios.post(`${baseURL}/api/donors`, formData);
       console.log('Response:', response.data);
       setMessage(response.data.message);
       setFormData({

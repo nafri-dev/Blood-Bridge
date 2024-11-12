@@ -71,7 +71,7 @@ function Dashboard({ onLogout }) {
       if (!token) {
         throw new Error('No token found');
       }
-      await axios.put(`${baseURL}/requests/${requestId}`, 
+      await axios.put(`${baseURL}/api/requests/${requestId}`, 
         { status: newStatus },
         { 
           headers: { 
