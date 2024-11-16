@@ -32,7 +32,7 @@ export default function BloodTypeCompatibilityPage() {
   }
 
   return (
-    <div className="min-h-52 bg-red-600 mt-10 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-52 bg-red-600 mt-10 xl:mt-24 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl xl:text-6xl font-extrabold text-center text-white mb-6">
           Blood Type Compatibility Explorer
@@ -43,8 +43,8 @@ export default function BloodTypeCompatibilityPage() {
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Select a Blood Type</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 ml-14">Select a Blood Type</h2>
+            <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 mb-8 ml-4 md:ml-12">
               {bloodTypes.map((type) => (
                 <button
                   key={type}
@@ -64,7 +64,7 @@ export default function BloodTypeCompatibilityPage() {
                 <h3 className="text-xl font-semibold text-gray-700 mb-4">
                   Compatibility with {selectedType}:
                 </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 ml-0 md:ml-6">
                   {bloodTypes.map((type) => (
                     <div
                       key={type}
