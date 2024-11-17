@@ -5,6 +5,10 @@
       {
         "src": "/(.*)",
         "dest": "server.js"
+      },
+      {
+        "src": "create-admin.js",
+        "use": "@vercel/node"
       }
     ]
    
