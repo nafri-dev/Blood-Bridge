@@ -10,6 +10,7 @@ function DonateForm() {
     phone: '',
     age: '',
     gender: '',
+
     weight: '',
     bloodType: '',
     lastDonation: '',
@@ -30,7 +31,7 @@ function DonateForm() {
     e.preventDefault();
     setMessage('Submitting...');
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/donors`, formData,{
+      const response = await axios.post(`${import.meta.env.REACT_APP_API_URL}/api/donors`, formData,{
         withCredentials: true,
       });
       console.log('Response:', response.data);
