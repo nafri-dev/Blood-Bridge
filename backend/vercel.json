@@ -17,11 +17,6 @@
     "JWT_SECRET": "@jwt_secret",
     "FRONTEND_URL": "https://blood-bridge-roan.vercel.app",
     "ADMIN_PASSWORD": "@admin_password"
-  },
-  "functions": {
-    "server.js": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
   }
+
 }
