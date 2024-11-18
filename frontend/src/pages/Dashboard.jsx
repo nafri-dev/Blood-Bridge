@@ -39,7 +39,7 @@ function Dashboard({ onLogout }) {
       if (!token) {
         throw new Error('No token found');
       }
-      const response = await axios.get(`${import.meta.env.REACT_APP_API_URL}/api/dashboard`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/dashboard`, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -66,12 +66,13 @@ function Dashboard({ onLogout }) {
   };
 
   const handleStatusChange = async (requestId, newStatus) => {
-    try {
+    try { 
+
       const token = localStorage.getItem('token');
       if (!token) {
         throw new Error('No token found');
       }
-      await axios.put(`${import.meta.env.REACT_APP_API_URL}/api/requests/${requestId}`, 
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/requests/${requestId}`, 
         { status: newStatus },
         { 
           headers: { 
