@@ -18,7 +18,7 @@ function DonateForm() {
     recentIllness: '',
     consent: false
   });
-  const baseURL = 'https://blood-bridge-admin.vercel.app/';
+  const baseURL = 'https://blood-bridge-admin.vercel.app';
   const [message, setMessage] = useState('');
 
   const handleChange = (e) => {

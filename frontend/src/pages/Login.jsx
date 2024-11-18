@@ -9,7 +9,7 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const baseURL = 'https://blood-bridge-admin.vercel.app/';
+  const baseURL = 'https://blood-bridge-admin.vercel.app';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
