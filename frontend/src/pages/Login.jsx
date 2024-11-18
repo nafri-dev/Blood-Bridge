@@ -9,36 +9,52 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const baseURL = process.env.REACT_APP_API_URL
   
+  // Ensure baseURL is correctly set from environment variables (VITE_API_URL)
+  const baseURL = process.env.REACT_APP_URL || 'https://blood-bridge-roan.vercel.app' || 'http://localhost:5000' // Fallback URL
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError(''); // Clear previous errors on each submit
+  
+    const token = localStorage.getItem('token'); // Get token from localStorage
+  
     try {
-      const response = await axios.post(`${baseURL}/api/login`, { username, password });
+      // Custom headers included with POST request
+      const response = await axios.post(
+        `${baseURL}/api/login`,
+        { username, password },
+        {
+          headers: {
+            'Content-Type': 'application/json', // Set Content-Type header to JSON
+            Authorization: `Bearer ${token}`, // Include JWT token in Authorization header
+          },
+        }
+      );
+  
+      // Handle the response if login is successful
       if (response.data && response.data.token) {
-        localStorage.setItem('token', response.data.token);
-        onLogin();
-        navigate('/dashboard');
+        localStorage.setItem('token', response.data.token); // Store token in local storage
+        onLogin(); // Callback function to notify parent component
+        navigate('/dashboard'); // Navigate to the dashboard page after successful login
       } else {
         setError('Invalid response from server. Please try again.');
       }
     } catch (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
+        // If server responds with an error (status code outside 2xx)
         setError(error.response.data.message || 'Invalid credentials. Please try again.');
       } else if (error.request) {
-        // The request was made but no response was received
+        // If no response is received from the server
         setError('No response from server. Please check your internet connection.');
       } else {
-        // Something happened in setting up the request that triggered an Error
+        // If there's a problem in setting up the request
         setError('An error occurred. Please try again.');
       }
-      console.error('Login error:', error);
+      console.error('Login error:', error); // Log error for debugging
     }
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-500 to-red-600 p-4">

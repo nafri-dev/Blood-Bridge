@@ -24,7 +24,7 @@ function Dashboard({ onLogout }) {
   const [activeTab, setActiveTab] = useState('overview');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
-  const baseURL = process.env.REACT_APP_API_URL
+  const baseURL = process.env.REACT_APP_API_URL || 'https://blood-bridge-roan.vercel.app' || 'http://localhost:5000'
 
  
 

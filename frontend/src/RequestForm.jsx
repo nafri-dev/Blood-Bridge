@@ -19,9 +19,8 @@ function RequestForm() {
     consent: false
   });
 
-  const [message, setMessage] = useState('');
-  const baseURL = process.env.REACT_APP_API_URL
-
+  const [message, setMessage] = useState(''); 
+  const baseURL = process.env.REACT_APP_URL || 'https://blood-bridge-roan.vercel.app' || 'http://localhost:5000' // Fallback URL
 
   const handleChange = (e) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
