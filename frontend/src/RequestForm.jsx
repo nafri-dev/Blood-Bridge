@@ -20,6 +20,7 @@ function RequestForm() {
   });
 
   const [message, setMessage] = useState('');
+  const baseURL = process.env.REACT_APP_API_URL
 
 
   const handleChange = (e) => {
@@ -31,7 +32,7 @@ function RequestForm() {
     e.preventDefault();
     setMessage('Submitting...');
     try {
-      const response = await axios.post(`${import.meta.env.REACT_APP_API_URL}/api/requests`, formData,{
+      const response = await axios.post(`${baseURL}/api/requests`, formData,{
         withCredentials: true,
       });
       console.log('Response:', response.data);
