@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000;
 
 // Middleware
 const corsOptions = {
-  origin: 'http://blood-bridge-roan.vercel.app/', // Replace with your frontend URL
+  origin: 'http://blood-bridge-roan.vercel.app', // Replace with your frontend URL
   optionsSuccessStatus: 200,
   credentials: true,
 };
