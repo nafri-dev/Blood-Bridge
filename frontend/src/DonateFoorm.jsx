@@ -18,7 +18,7 @@ function DonateForm() {
     recentIllness: '',
     consent: false
   });
-  const baseURL = 'https://blood-bridge-admin.vercel.app';
+
   const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
@@ -30,7 +30,7 @@ function DonateForm() {
     e.preventDefault();
     setMessage('Submitting...');
     try {
-      const response = await axios.post(`${baseURL}/api/donors`, formData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/donors`, formData);
       console.log('Response:', response.data);
       setMessage(response.data.message);
       setFormData({

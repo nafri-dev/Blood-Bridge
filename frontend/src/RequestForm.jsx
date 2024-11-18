@@ -18,7 +18,7 @@ function RequestForm() {
     additionalInfo: '',
     consent: false
   });
-  const baseURL = 'https://blood-bridge-admin.vercel.app';
+
   const [message, setMessage] = useState('');
 
 
@@ -31,7 +31,7 @@ function RequestForm() {
     e.preventDefault();
     setMessage('Submitting...');
     try {
-      const response = await axios.post(`${baseURL}/api/requests`, formData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/requests`, formData);
       console.log('Response:', response.data);
       setMessage(response.data.message);
       setFormData({
