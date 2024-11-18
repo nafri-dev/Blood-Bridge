@@ -9,17 +9,33 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const baseURL = 'https://blood-bridge-admin.vercel.app';
+  const baseURL = process.env.REACT_APP_API_URL || 'https://blood-bridge-admin.vercel.app';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     try {
       const response = await axios.post(`${baseURL}/api/login`, { username, password });
-      localStorage.setItem('token', response.data.token);
-      onLogin();
-      navigate('/dashboard');
+      if (response.data && response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        onLogin();
+        navigate('/dashboard');
+      } else {
+        setError('Invalid response from server. Please try again.');
+      }
     } catch (error) {
-      setError('Invalid credentials');
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        setError(error.response.data.message || 'Invalid credentials. Please try again.');
+      } else if (error.request) {
+        // The request was made but no response was received
+        setError('No response from server. Please check your internet connection.');
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        setError('An error occurred. Please try again.');
+      }
+      console.error('Login error:', error);
     }
   };
 
@@ -28,7 +44,7 @@ function Login({ onLogin }) {
       <div className="max-w-4xl w-full bg-white md:rounded-2xl shadow-2xl overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Left Side - Image and Welcome */}
-          <div className=" md:flex flex-col justify-center items-center bg-red-100 p-12">
+          <div className="md:flex flex-col justify-center items-center bg-red-100 p-12">
             <img
               src="/img/blood-drop.png"
               alt="Blood Drop"
