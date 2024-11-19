@@ -11,7 +11,7 @@ function Login({ onLogin }) {
   const navigate = useNavigate();
   
   // Ensure baseURL is correctly set from environment variables (VITE_API_URL)
-  const baseURL = process.env.REACT_APP_URL || 'https://blood-bridge-roan.vercel.app' || 'http://localhost:5000' // Fallback URL
+  const baseURL = import.meta.env.API_URL || 'https://blood-bridge-admin.vercel.app' || 'http://localhost:5000' // Fallback URL
 
   const handleSubmit = async (e) => {
     e.preventDefault();
