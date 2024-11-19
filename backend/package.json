@@ -4,7 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "node api/index.js"
+    "test": "node server.js"
   },
   "keywords": [],
   "author": "",
